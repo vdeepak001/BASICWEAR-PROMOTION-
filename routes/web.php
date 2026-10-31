@@ -12,6 +12,19 @@ Route::get('/product/detail/{slug}', [HomeController::class, 'productDetail'])->
 Route::get('/product/{slug}', [HomeController::class, 'productDetail']);
 Route::post('/quotes/submit', [HomeController::class, 'submitQuote'])->name('quotes.submit');
 
+Route::get('/lang/{locale}', function (string $locale) {
+    if (! in_array($locale, ['en', 'de'])) {
+        $locale = 'en';
+    }
+
+    session(['locale' => $locale]);
+
+    $cookieVal = $locale === 'de' ? '/en/de' : '/en/en';
+    cookie()->queue('googtrans', $cookieVal, 60 * 24 * 30, '/', null, false, false);
+
+    return redirect()->back();
+})->name('lang.switch');
+
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');

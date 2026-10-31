@@ -1,8 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 42" {{ $attributes }}>
-    <path 
-        fill="currentColor" 
-        fill-rule="evenodd" 
-        clip-rule="evenodd"
-        d="M17.2 5.633 8.6.855 0 5.633v26.51l16.2 9 16.2-9v-8.442l7.6-4.223V9.856l-8.6-4.777-8.6 4.777V18.3l-5.6 3.111V5.633ZM38 18.301l-5.6 3.11v-6.157l5.6-3.11V18.3Zm-1.06-7.856-5.54 3.078-5.54-3.079 5.54-3.078 5.54 3.079ZM24.8 18.3v-6.157l5.6 3.111v6.158L24.8 18.3Zm-1 1.732 5.54 3.078-13.14 7.302-5.54-3.078 13.14-7.3v-.002Zm-16.2 7.89 7.6 4.222V38.3L2 30.966V7.92l5.6 3.111v16.892ZM8.6 9.3 3.06 6.222 8.6 3.143l5.54 3.08L8.6 9.3Zm21.8 15.51-13.2 7.334V38.3l13.2-7.334v-6.156ZM9.6 11.034l5.6-3.11v14.6l-5.6 3.11v-14.6Z"
-    />
+<svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" {{ $attributes }}>
+    <defs>
+        <linearGradient id="bwAppLogoGrad" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#FF8A00"/>
+            <stop offset="55%" stop-color="#ED7100"/>
+            <stop offset="100%" stop-color="#C2410C"/>
+        </linearGradient>
+    </defs>
+    <rect x="2" y="2" width="40" height="40" rx="11" fill="url(#bwAppLogoGrad)"/>
+    <path d="M12.5 12C12.5 10.9 13.4 10 14.5 10H18C19.1 10 20 10.9 20 12V32C20 33.1 19.1 34 18 34H14.5C13.4 34 12.5 33.1 12.5 32V12Z" fill="white"/>
+    <path d="M18 10H23.5C27.64 10 31 12.69 31 16C31 19.31 27.64 22 23.5 22H18V10Z" fill="white" fill-opacity="0.9"/>
+    <path d="M18 13.5H23C25.21 13.5 27 14.62 27 16C27 17.38 25.21 18.5 23 18.5H18V13.5Z" fill="url(#bwAppLogoGrad)"/>
+    <path d="M18 20.5H24.5C28.92 20.5 32.5 23.41 32.5 27C32.5 30.59 28.92 33.5 24.5 33.5H18V20.5Z" fill="white"/>
+    <path d="M18 24H24C26.21 24 28 25.34 28 27C28 28.66 26.21 30 24 30H18V24Z" fill="url(#bwAppLogoGrad)"/>
+    <path d="M33.5 6.5L34.3 8.7L36.5 9.5L34.3 10.3L33.5 12.5L32.7 10.3L30.5 9.5L32.7 8.7L33.5 6.5Z" fill="#FFF7ED"/>
 </svg>

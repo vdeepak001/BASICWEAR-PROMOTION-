@@ -45,6 +45,53 @@
         [x-cloak] {
             display: none !important;
         }
+        /* Clean Google Translate Overrides & UI Polish */
+        .goog-te-banner-frame,
+        .goog-te-banner-frame.skiptranslate,
+        iframe.goog-te-banner-frame,
+        .VIpgJd-ZVi9od-ORHb-OEVmcd,
+        .VIpgJd-ZVi9od-ORHb-OEVmcd.skiptranslate,
+        iframe.VIpgJd-ZVi9od-ORHb-OEVmcd,
+        iframe.skiptranslate,
+        iframe[id*=":1.container"],
+        iframe[id*=":2.container"],
+        iframe[id*="container"],
+        iframe[class*="goog-te-banner"],
+        iframe[class*="VIpgJd"] {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            width: 0 !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            position: absolute !important;
+            top: -9999px !important;
+            left: -9999px !important;
+            border: 0 !important;
+        }
+        html {
+            top: 0px !important;
+        }
+        body {
+            top: 0px !important;
+            position: static !important;
+            margin-top: 0px !important;
+        }
+        #google_translate_element,
+        .goog-te-gadget,
+        #goog-gt-tt,
+        .goog-te-balloon-frame,
+        .VIpgJd-ZVi9od-aZ2wEe-wOHMyf {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        .goog-text-highlight {
+            background-color: transparent !important;
+            box-shadow: none !important;
+        }
+        .notranslate {
+            translate: no;
+        }
     </style>
     @stack('styles')
 </head>
@@ -57,31 +104,52 @@
             <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
                 <!-- Logo -->
                 <div class="flex items-center justify-between">
-                    <a href="{{ route('home') }}" class="flex items-center gap-2 shrink-0 group">
-                        <div class="size-9 rounded-lg bg-[#ed7100] flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform">
-                            <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                                <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
-                                <path d="m3.3 7 8.7 5 8.7-5"/>
-                                <path d="M12 22V12"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <span class="text-xl font-extrabold tracking-tight text-gray-900 group-hover:text-[#ed7100] transition-colors">
-                                BASICWEAR<span class="text-[#ed7100]">PROMO</span>
-                            </span>
-                        </div>
+                    <a href="{{ route('home') }}" class="inline-flex items-center shrink-0">
+                        <x-brand-logo />
                     </a>
 
-                    <!-- Mobile Menu Toggle Button -->
-                    <button
-                        type="button"
-                        @click="mobileNavOpen = !mobileNavOpen"
-                        class="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 focus:outline-none"
-                    >
-                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                        </svg>
-                    </button>
+                    <!-- Mobile Menu & Language Toggle Buttons -->
+                    <div class="flex items-center gap-2 lg:hidden notranslate">
+                        <!-- Quick Mobile Language Switch Button -->
+                        <button
+                            type="button"
+                            @click="setLanguage(currentLang === 'en' ? 'de' : 'en')"
+                            class="inline-flex items-center gap-1 px-2 py-1 rounded border border-gray-300 bg-white hover:bg-gray-50 text-gray-800 text-[11px] font-bold shadow-2xs transition-colors cursor-pointer"
+                            :title="currentLang === 'en' ? 'Translate to German / Auf Deutsch' : 'Translate to English / Auf Englisch'"
+                            aria-label="Toggle language"
+                        >
+                            <span x-show="currentLang === 'en'" class="flex items-center gap-1">
+                                <svg class="size-3.5 shrink-0 rounded-xs shadow-2xs" viewBox="0 0 640 480">
+                                    <path fill="#012169" d="M0 0h640v480H0z"/>
+                                    <path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 240l240 178v62h-78L320 301 76 480H0v-62l240-178L0 62V0h75z"/>
+                                    <path fill="#C8102E" d="m424 288 216 153v39h-24L392 312l32-24zM640 39 424 192l-32-24L592 0h48v39zM192 192 0 39V0h48l200 144-56 48zm0 96L0 441v39h48l200-144-56-48z"/>
+                                    <path fill="#FFF" d="M240 0h160v480H240zM0 160h640v160H0z"/>
+                                    <path fill="#C8102E" d="M267 0h106v480H267zM0 187h640v106H0z"/>
+                                </svg>
+                                <span>EN</span>
+                            </span>
+                            <span x-show="currentLang === 'de'" class="flex items-center gap-1" x-cloak>
+                                <svg class="size-3.5 shrink-0 rounded-xs shadow-2xs" viewBox="0 0 640 480">
+                                    <path fill="#000" d="M0 0h640v160H0z"/>
+                                    <path fill="#D00" d="M0 160h640v160H0z"/>
+                                    <path fill="#FFCE00" d="M0 320h640v160H0z"/>
+                                </svg>
+                                <span>DE</span>
+                            </span>
+                        </button>
+
+                        <!-- Mobile Menu Toggle Button -->
+                        <button
+                            type="button"
+                            @click="mobileNavOpen = !mobileNavOpen"
+                            class="p-2 rounded-lg text-gray-700 hover:bg-gray-100 focus:outline-none"
+                            aria-label="Toggle navigation menu"
+                        >
+                            <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Desktop Category Nav Bar (Horizontal list on navbar like Sinovation) -->
@@ -164,12 +232,139 @@
                             Login
                         </a>
                     @endauth
+
+                    <div class="h-4 w-px bg-gray-300 mx-1 hidden sm:block"></div>
+
+                    <!-- DESKTOP LANGUAGE TRANSLATE DROPDOWN BUTTON -->
+                    <div class="relative notranslate" @click.outside="langDropdownOpen = false">
+                        <button
+                            type="button"
+                            @click="langDropdownOpen = !langDropdownOpen"
+                            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded border border-gray-300 bg-white hover:bg-gray-50 text-gray-800 text-xs font-semibold transition-all shadow-2xs hover:border-gray-400 cursor-pointer"
+                            title="Translate Language / Sprache wechseln"
+                            aria-haspopup="true"
+                            :aria-expanded="langDropdownOpen"
+                        >
+                            <!-- Flag & Label for English -->
+                            <span x-show="currentLang === 'en'" class="flex items-center gap-1.5">
+                                <svg class="size-4 shrink-0 rounded-xs shadow-2xs" viewBox="0 0 640 480">
+                                    <path fill="#012169" d="M0 0h640v480H0z"/>
+                                    <path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 240l240 178v62h-78L320 301 76 480H0v-62l240-178L0 62V0h75z"/>
+                                    <path fill="#C8102E" d="m424 288 216 153v39h-24L392 312l32-24zM640 39 424 192l-32-24L592 0h48v39zM192 192 0 39V0h48l200 144-56 48zm0 96L0 441v39h48l200-144-56-48z"/>
+                                    <path fill="#FFF" d="M240 0h160v480H240zM0 160h640v160H0z"/>
+                                    <path fill="#C8102E" d="M267 0h106v480H267zM0 187h640v106H0z"/>
+                                </svg>
+                                <span class="font-bold">English</span>
+                            </span>
+                            <!-- Flag & Label for German -->
+                            <span x-show="currentLang === 'de'" class="flex items-center gap-1.5" x-cloak>
+                                <svg class="size-4 shrink-0 rounded-xs shadow-2xs" viewBox="0 0 640 480">
+                                    <path fill="#000" d="M0 0h640v160H0z"/>
+                                    <path fill="#D00" d="M0 160h640v160H0z"/>
+                                    <path fill="#FFCE00" d="M0 320h640v160H0z"/>
+                                </svg>
+                                <span class="font-bold">Deutsch</span>
+                            </span>
+                            <svg class="size-3 text-gray-500 transition-transform duration-200" :class="{ 'rotate-180': langDropdownOpen }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        <!-- Dropdown Menu -->
+                        <div
+                            x-show="langDropdownOpen"
+                            x-transition:enter="transition ease-out duration-150"
+                            x-transition:enter-start="transform opacity-0 scale-95"
+                            x-transition:enter-end="transform opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-100"
+                            x-transition:leave-start="transform opacity-100 scale-100"
+                            x-transition:leave-end="transform opacity-0 scale-95"
+                            class="absolute right-0 mt-1.5 w-44 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50 text-xs"
+                            x-cloak
+                        >
+                            <div class="px-3 py-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100">
+                                Translate / Sprache
+                            </div>
+                            <button
+                                type="button"
+                                @click="setLanguage('en')"
+                                class="w-full flex items-center justify-between px-3 py-2 text-left hover:bg-orange-50 hover:text-[#ed7100] transition-colors cursor-pointer"
+                                :class="{ 'bg-orange-50/70 text-[#ed7100] font-bold': currentLang === 'en', 'text-gray-700': currentLang !== 'en' }"
+                            >
+                                <span class="flex items-center gap-2">
+                                    <svg class="size-4 shrink-0 rounded-xs shadow-2xs" viewBox="0 0 640 480">
+                                        <path fill="#012169" d="M0 0h640v480H0z"/>
+                                        <path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 240l240 178v62h-78L320 301 76 480H0v-62l240-178L0 62V0h75z"/>
+                                        <path fill="#C8102E" d="m424 288 216 153v39h-24L392 312l32-24zM640 39 424 192l-32-24L592 0h48v39zM192 192 0 39V0h48l200 144-56 48zm0 96L0 441v39h48l200-144-56-48z"/>
+                                        <path fill="#FFF" d="M240 0h160v480H240zM0 160h640v160H0z"/>
+                                        <path fill="#C8102E" d="M267 0h106v480H267zM0 187h640v106H0z"/>
+                                    </svg>
+                                    <span>English</span>
+                                </span>
+                                <svg x-show="currentLang === 'en'" class="size-4 text-[#ed7100]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                </svg>
+                            </button>
+                            <button
+                                type="button"
+                                @click="setLanguage('de')"
+                                class="w-full flex items-center justify-between px-3 py-2 text-left hover:bg-orange-50 hover:text-[#ed7100] transition-colors cursor-pointer"
+                                :class="{ 'bg-orange-50/70 text-[#ed7100] font-bold': currentLang === 'de', 'text-gray-700': currentLang !== 'de' }"
+                            >
+                                <span class="flex items-center gap-2">
+                                    <svg class="size-4 shrink-0 rounded-xs shadow-2xs" viewBox="0 0 640 480">
+                                        <path fill="#000" d="M0 0h640v160H0z"/>
+                                        <path fill="#D00" d="M0 160h640v160H0z"/>
+                                        <path fill="#FFCE00" d="M0 320h640v160H0z"/>
+                                    </svg>
+                                    <span>Deutsch (German)</span>
+                                </span>
+                                <svg x-show="currentLang === 'de'" class="size-4 text-[#ed7100]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Mobile Drawer Menu -->
         <div x-show="mobileNavOpen" x-collapse class="lg:hidden border-t border-gray-200 bg-white px-4 py-3" x-cloak>
+            <!-- Language Selector in Mobile Drawer -->
+            <div class="mb-3 pb-3 border-b border-gray-100 notranslate">
+                <div class="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">Translate Language / Sprache</div>
+                <div class="grid grid-cols-2 gap-2">
+                    <button
+                        type="button"
+                        @click="setLanguage('en'); mobileNavOpen = false"
+                        class="px-3 py-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-2 border transition-all cursor-pointer"
+                        :class="currentLang === 'en' ? 'border-[#ed7100] bg-orange-50 text-[#ed7100] font-bold shadow-2xs' : 'border-gray-200 text-gray-700 hover:bg-gray-50'"
+                    >
+                        <svg class="size-4 shrink-0 rounded-xs shadow-2xs" viewBox="0 0 640 480">
+                            <path fill="#012169" d="M0 0h640v480H0z"/>
+                            <path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 240l240 178v62h-78L320 301 76 480H0v-62l240-178L0 62V0h75z"/>
+                            <path fill="#C8102E" d="m424 288 216 153v39h-24L392 312l32-24zM640 39 424 192l-32-24L592 0h48v39zM192 192 0 39V0h48l200 144-56 48zm0 96L0 441v39h48l200-144-56-48z"/>
+                            <path fill="#FFF" d="M240 0h160v480H240zM0 160h640v160H0z"/>
+                            <path fill="#C8102E" d="M267 0h106v480H267zM0 187h640v106H0z"/>
+                        </svg>
+                        <span>English</span>
+                    </button>
+                    <button
+                        type="button"
+                        @click="setLanguage('de'); mobileNavOpen = false"
+                        class="px-3 py-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-2 border transition-all cursor-pointer"
+                        :class="currentLang === 'de' ? 'border-[#ed7100] bg-orange-50 text-[#ed7100] font-bold shadow-2xs' : 'border-gray-200 text-gray-700 hover:bg-gray-50'"
+                    >
+                        <svg class="size-4 shrink-0 rounded-xs shadow-2xs" viewBox="0 0 640 480">
+                            <path fill="#000" d="M0 0h640v160H0z"/>
+                            <path fill="#D00" d="M0 160h640v160H0z"/>
+                            <path fill="#FFCE00" d="M0 320h640v160H0z"/>
+                        </svg>
+                        <span>Deutsch</span>
+                    </button>
+                </div>
+            </div>
             <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Categories</div>
             @if (isset($categories))
                 <div class="grid grid-cols-2 gap-2">
@@ -219,8 +414,11 @@
     </main>
 
     <!-- FOOTER (Matching Sinovation copyright) -->
-    <footer class="bg-gray-900 text-gray-400 py-6 text-xs text-center border-t border-gray-800 mt-12 w-full">
-        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 space-y-2">
+    <footer class="bg-gray-900 text-gray-400 py-8 text-xs text-center border-t border-gray-800 mt-12 w-full">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 space-y-3 flex flex-col items-center">
+            <a href="{{ route('home') }}" class="inline-flex items-center">
+                <x-brand-logo size="small" :dark="true" />
+            </a>
             <p>&copy; 2026 Basicwear Promotions. All Right Reserved.</p>
             <div class="flex items-center justify-center gap-4 text-[11px] text-gray-500">
                 <a href="{{ route('home') }}" class="hover:text-gray-300">Home</a>
@@ -424,6 +622,51 @@
                 mobileNavOpen: false,
                 quoteModalOpen: false,
                 quoteProduct: null,
+                langDropdownOpen: false,
+                currentLang: 'en',
+
+                init() {
+                    const saved = localStorage.getItem('site_lang');
+                    const cookieMatch = document.cookie.match(/googtrans=\/en\/(de|en)/);
+                    if (saved === 'de' || (cookieMatch && cookieMatch[1] === 'de')) {
+                        this.currentLang = 'de';
+                    } else {
+                        this.currentLang = 'en';
+                    }
+                },
+
+                setLanguage(lang) {
+                    if (this.currentLang === lang) {
+                        this.langDropdownOpen = false;
+                        return;
+                    }
+
+                    this.currentLang = lang;
+                    this.langDropdownOpen = false;
+
+                    if (lang === 'de') {
+                        localStorage.setItem('site_lang', 'de');
+                        setGoogtransCookie('/en/de');
+
+                        const combo = document.querySelector('.goog-te-combo');
+                        if (combo) {
+                            combo.value = 'de';
+                            combo.dispatchEvent(new Event('change'));
+                        } else {
+                            window.location.reload();
+                        }
+                    } else {
+                        localStorage.setItem('site_lang', 'en');
+                        clearGoogtransCookie();
+
+                        const combo = document.querySelector('.goog-te-combo');
+                        if (combo) {
+                            combo.value = 'en';
+                            combo.dispatchEvent(new Event('change'));
+                        }
+                        window.location.reload();
+                    }
+                },
 
                 openQuoteModal(product = null) {
                     this.quoteProduct = product;
@@ -436,6 +679,84 @@
             }
         }
     </script>
+
+    <!-- Hidden Google Translate Element Container -->
+    <div id="google_translate_element" style="display:none !important;" class="hidden" aria-hidden="true"></div>
+
+    <script type="text/javascript">
+        function setGoogtransCookie(val) {
+            document.cookie = 'googtrans=' + val + '; path=/; max-age=' + (60 * 60 * 24 * 30);
+            const host = window.location.hostname;
+            if (host) {
+                document.cookie = 'googtrans=' + val + '; path=/; domain=' + host + '; max-age=' + (60 * 60 * 24 * 30);
+                const parts = host.split('.');
+                if (parts.length > 1) {
+                    document.cookie = 'googtrans=' + val + '; path=/; domain=.' + parts.slice(-2).join('.') + '; max-age=' + (60 * 60 * 24 * 30);
+                }
+            }
+        }
+
+        function clearGoogtransCookie() {
+            const expired = '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            document.cookie = 'googtrans' + expired;
+            const host = window.location.hostname;
+            if (host) {
+                document.cookie = 'googtrans' + expired + ' domain=' + host + ';';
+                const parts = host.split('.');
+                if (parts.length > 1) {
+                    document.cookie = 'googtrans' + expired + ' domain=.' + parts.slice(-2).join('.') + ';';
+                }
+            }
+            document.cookie = 'googtrans=/en/en; path=/; max-age=' + (60 * 60 * 24 * 30);
+        }
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,de',
+                autoDisplay: false
+            }, 'google_translate_element');
+
+            // If user previously selected German, ensure Google combo triggers translation
+            const saved = localStorage.getItem('site_lang');
+            if (saved === 'de') {
+                const interval = setInterval(function () {
+                    const combo = document.querySelector('.goog-te-combo');
+                    if (combo) {
+                        clearInterval(interval);
+                        if (combo.value !== 'de') {
+                            combo.value = 'de';
+                            combo.dispatchEvent(new Event('change'));
+                        }
+                    }
+                }, 100);
+                setTimeout(function () { clearInterval(interval); }, 4000);
+            }
+        }
+
+        // Intercept and eliminate Google Translate top banner strip and body shift
+        function suppressGoogleTranslateBanner() {
+            if (document.body && document.body.style.top && document.body.style.top !== '0px') {
+                document.body.style.setProperty('top', '0px', 'important');
+            }
+            if (document.documentElement && document.documentElement.style.top && document.documentElement.style.top !== '0px') {
+                document.documentElement.style.setProperty('top', '0px', 'important');
+            }
+            const banners = document.querySelectorAll('iframe.skiptranslate, iframe[id*=":1.container"], iframe[class*="VIpgJd"], .goog-te-banner-frame, .VIpgJd-ZVi9od-ORHb-OEVmcd');
+            banners.forEach(function (b) {
+                b.style.setProperty('display', 'none', 'important');
+                b.style.setProperty('visibility', 'hidden', 'important');
+                b.style.setProperty('height', '0px', 'important');
+                b.style.setProperty('width', '0px', 'important');
+                b.style.setProperty('position', 'absolute', 'important');
+                b.style.setProperty('top', '-9999px', 'important');
+            });
+        }
+        window.addEventListener('load', suppressGoogleTranslateBanner);
+        const gtObserver = new MutationObserver(suppressGoogleTranslateBanner);
+        gtObserver.observe(document.documentElement, { attributes: true, childList: true, subtree: true });
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     @stack('scripts')
 </body>
 </html>
