@@ -246,58 +246,5 @@
             @endforelse
         </div>
     </section>
-
-    <!-- VALUE PROPOSITION / TRUST ROW (B2B Promo Features - Full Width) -->
-    <section class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 py-8">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="rounded-xl bg-white p-5 border border-gray-200/80 shadow-2xs flex items-start gap-3.5">
-                <div class="rounded-lg bg-orange-50 p-2.5 text-[#ed7100] shrink-0">
-                    <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wide">Factory Direct Pricing</h4>
-                    <p class="text-xs text-gray-500 mt-0.5">Tiered bulk discounts scaling from 100 to 50,000+ units.</p>
-                </div>
-            </div>
-
-            <div class="rounded-xl bg-white p-5 border border-gray-200/80 shadow-2xs flex items-start gap-3.5">
-                <div class="rounded-lg bg-blue-50 p-2.5 text-blue-600 shrink-0">
-                    <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
-                    </svg>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wide">Air &amp; Sea Freight</h4>
-                    <p class="text-xs text-gray-500 mt-0.5">Fast 3-4 week air courier or economical sea freight for large orders.</p>
-                </div>
-            </div>
-
-            <div class="rounded-xl bg-white p-5 border border-gray-200/80 shadow-2xs flex items-start gap-3.5">
-                <div class="rounded-lg bg-purple-50 p-2.5 text-purple-600 shrink-0">
-                    <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                    </svg>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wide">Free Virtual Mockups</h4>
-                    <p class="text-xs text-gray-500 mt-0.5">Visual 3D digital artwork proofs before production begins.</p>
-                </div>
-            </div>
-
-            <div class="rounded-xl bg-white p-5 border border-gray-200/80 shadow-2xs flex items-start gap-3.5">
-                <div class="rounded-lg bg-emerald-50 p-2.5 text-emerald-600 shrink-0">
-                    <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
-                    </svg>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wide">Certified Quality</h4>
-                    <p class="text-xs text-gray-500 mt-0.5">Rigorous inspection, durable prints, and eco-certified materials.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 </div>
 @endsection
