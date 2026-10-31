@@ -1,6 +1,6 @@
 /.phpunit.cache
 /node_modules
-/public/build
+# /public/build (uncommented to allow deployment on servers without Node/npm build)
 /public/fonts-manifest.dev.json
 /public/hot
 /public/storage
